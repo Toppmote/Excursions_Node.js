@@ -1,5 +1,4 @@
 const db = require('../db')
-const {values} = require("pg/lib/native/query");
 
 class ExcursionController {
 
@@ -12,7 +11,7 @@ class ExcursionController {
 
     async deleteExcursion(req, res) {
         const id = req.params.id
-        const excursion = await db.query('delete from excursions where id = $1', [id])
+        await db.query('delete from excursions where id = $1', [id])
         res.json('deleted')
     }
 
@@ -25,13 +24,13 @@ class ExcursionController {
 
     async getExcursions(req, res) {
         const excursions = await db.query('select * from excursions')
-        res.json(excursions.rows)
+        res.render('excursions.html', {excursions: excursions.rows})
     }
 
     async getExcursionById(req, res) {
         const id = req.params.id
         const excursion = await db.query('select * from excursions where id = $1', [id])
-        res.json(excursion.rows[0])
+        res.render('excursion_details.html', {excursion: excursion.rows[0]})
     }
 
 }

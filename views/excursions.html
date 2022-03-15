@@ -14,7 +14,7 @@
 <header>
     <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a href="index.html" class="navbar-brand d-flex align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
@@ -24,11 +24,11 @@
                 <strong>Экскурсионное бюро</strong>
             </a>
             <ul class="nav nav-pills">
-                <li><a href="index.html" class="nav-link px-2 text-white">Начальная страница</a></li>
+                <li><a href="/" class="nav-link px-2 text-white">Начальная страница</a></li>
                 <li><a href="#" class="nav-link px-2 text-secondary">Экскурсии</a></li>
-                <li><a href="cities.html" class="nav-link px-2 text-white">Города</a></li>
-                <li><a href="guides.html" class="nav-link px-2 text-white">Экскурсоводы</a></li>
-                <li><a href="about.html" class="nav-link px-2 text-white">О нас</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Города</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Экскурсоводы</a></li>
+                <li><a href="/about" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
         </div>
     </div>
@@ -41,36 +41,25 @@
             </div>
         </div>
     </section>
+    {% for excursion in excursions %}
     <hr class="featurette-divider">
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">Московские необычные места</h2>
-            <p class="lead">Узнайте о таких местах Российской столицы, о которых вы никогда бы не подумали!</p>
+            <h2 class="featurette-heading">{{excursion.name}}</h2>
+            <p class="lead">{{excursion.description}}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <button type="button" onclick="document.location='excursion_details.html'" class="btn btn-sm btn-outline-info">
-                    Подробнее
-                </button>
+                <a href="/excursion/{{excursion.id}}">
+                    <button type="button" class="btn btn-sm btn-outline-info">
+                        Подробнее
+                    </button>
+                </a>
             </div>
         </div>
         <div class="col-md-5">
-            <img src="pictures/moscow.jpg" alt="Необычное место" class="img-fluid">
+            <img src="pictures/moscow.jpg" alt="Город" class="img-fluid">
         </div>
     </div>
-    <hr class="featurette-divider">
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Волгоградские необычные места</h2>
-            <p class="lead">Увидьте своими глазами необычные места Города-Героя Волгограда!</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <button type="button" class="btn btn-sm btn-outline-info">
-                    Подробнее
-                </button>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <img src="pictures/volgograd.jpg" alt="Необычное место" class="img-fluid">
-        </div>
-    </div>
+    {% endfor %}
     <hr class="featurette-divider">
     <div class="row featurette">
         <div class="col-md-7">
